@@ -1,0 +1,19 @@
+CREATE DATABASE vet_system;
+
+USE vet_system;
+
+CREATE TABLE pets (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  species VARCHAR(100),
+  owner VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE audit_logs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  action VARCHAR(100),
+  description TEXT,
+  user_email VARCHAR(100),
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
