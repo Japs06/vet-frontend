@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Analytics Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; padding: 2rem; background: #f9f9f9; }
+    canvas { margin-bottom: 30px; }
+  </style>
+</head>
+<body>
+  <h1>Analytics Overview</h1>
+  <canvas id="browserChart" width="400" height="200"></canvas>
+  <canvas id="osChart" width="400" height="200"></canvas>
+
+  <script>
+    fetch("http://<your-ec2-dns>:3000/analytics")
+      .then(res => res.json())
+      .then(data => {
+        const browserCounts = {};
+        const osCounts = {};
+
+        data.forEach(row => {
+          browserCounts[row.browser] = (browserCounts[row.browser] || 0) + 1;
+          osCounts[row.os] = (osCounts[row.os] || 0) + 1;
+        });
+
+        const drawChart = (ctxId, labels, values, label) => {
+          new Chart(document.getElementById(ctxId), {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label,
+                data: values,
+                backgroundColor: 'rgba(100, 200, 100, 0.7)'
+              }]
+            }
+          });
+        };
+
+        drawChart("browserChart", Object.keys(browserCounts), Object.values(browserCounts), "Browser");
+        drawChart("osChart", Object.keys(osCounts), Object.values(osCounts), "Operating System");
+      });
+  </script>
+</body>
+</html>

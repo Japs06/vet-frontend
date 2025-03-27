@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Veterinary System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <h2>Pet Records Dashboard</h2>
+  </div>
+  <div class="container">
+    <h1>Pet Records</h1>
+
+    <input type="text" id="searchInput" placeholder="Search pets..." />
+    
+    <form id="petForm">
+      <input type="text" id="petName" placeholder="Pet Name" required />
+      <input type="text" id="petSpecies" placeholder="Species" required />
+      <input type="text" id="petOwner" placeholder="Owner" required />
+      <button class="btn" type="submit">Add Pet</button>
+    </form>
+    
+    <table id="petTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Species</th>
+          <th>Owner</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
